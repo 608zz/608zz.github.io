@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Russian Word</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .word-container {
+      position: relative;
+      text-align: center;
+    }
+
+    .word {
+      font-size: 6vw;
+      color: white;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="word-container">
+    <div class="word" id="word"></div>
+  </div>
+
+  <script>
+    const russianWords = [
+      "Привет", "Спасибо", "Пожалуйста", "Извините", "Да", "Нет", "Счастливый", "Грустный", "Красивый", "Интересный",
+      "Дом", "Семья", "Друг", "Школа", "Работа", "Отдых", "Путешествие", "Еда", "Музыка", "Книга",
+      "Солнце", "Небо", "Вода", "Земля", "Снег", "Ветер", "Цветок", "Дерево", "Животное", "Птица"
+    ];
+
+    const wordElement = document.getElementById('word');
+
+    function showRandomWord() {
+      const randomIndex = Math.floor(Math.random() * russianWords.length);
+      const randomWord = russianWords[randomIndex];
+
+      wordElement.textContent = randomWord;
+      wordElement.style.opacity = 1;
+
+      wordElement.addEventListener('click', () => {
+        wordElement.style.opacity = 0;
+        setTimeout(showRandomWord, 1000);
+      }, { once: true });
+    }
+
+    showRandomWord();
+  </script>
+</body>
+</html>
